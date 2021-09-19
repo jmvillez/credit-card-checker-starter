@@ -26,16 +26,18 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 // Add your functions below:
 let newArr1 = [];
 let newArr2 = [];
-let sum1;
-let sum2;
+
+
 
 
 function validateCred(array) {
+    function getSum1() {
     for (let i = array.length-1; i >= 0; i-=2) {
         newArr1.push(array[i]);
       }
-      sum1 = newArr1.reduce((pv, cv) => pv + cv, 0);
-
+      return newArr1.reduce((pv, cv) => pv + cv, 0);
+    }    
+    function getSum2() {
       for (let i = array.length-2; i >=  0; i -=2) {
         if(array[i] >= 5){
             array[i] = array[i]*2 - 9
@@ -44,12 +46,12 @@ function validateCred(array) {
         }
       newArr2.push(array[i]);
      }
-      sum2 = newArr2.reduce((pv, cv) => pv + cv, 0);
-     if ((sum1 + sum2) % 10 === 0) {
-         return true;
-     } else {
-         return false;
-     }
+      return newArr2.reduce((pv, cv) => pv + cv, 0);
     }
-
-console.log(validateCred(mystery1));
+    if ((getSum1() + getSum2()) % 10 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log(validateCred(valid2));
